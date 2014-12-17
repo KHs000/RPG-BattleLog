@@ -322,7 +322,7 @@ public class JanelaLestrade extends JFrame{
           if (event.getSource() == Voltar) {
               encerar();
               
-             JanelaIniciar init = new JanelaIniciar();
+             JanelaFichaJogador init = new JanelaFichaJogador();
              init.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
              init.setSize(250, 250);
              init.setLocation(500, 30);

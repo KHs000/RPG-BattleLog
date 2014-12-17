@@ -52,18 +52,26 @@ public class JanelaConfiguracao extends JFrame {
              JanelaConfiguraJogador configJogador = new JanelaConfiguraJogador ();
              configJogador.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
              configJogador.setSize(400, 400);
-             configJogador.setLocation(500, 30);
+             configJogador.setLocation(450, 30);
              configJogador.setVisible(true);
          }
          if (event.getSource() == Opcao[1]) {
              encerar();
              
-             
+             JanelaTemporaria open = new JanelaTemporaria ();
+             open.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+             open.setSize(250, 250);
+             open.setLocation(500, 30);
+             open.setVisible(true);
          }
          if (event.getSource() == Opcao[2]) {
              encerar();
              
-             
+             JanelaTemporaria open = new JanelaTemporaria ();
+             open.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+             open.setSize(250, 250);
+             open.setLocation(500, 30);
+             open.setVisible(true);
          }
       }
     }
