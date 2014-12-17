@@ -7,17 +7,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 
 /**
  *
  * @author Felipe Rabelo
  */
-public class JanelaIniciar extends JFrame{
+public class JanelaConfiguraJogador extends JFrame{
     private JButton player [];
     private String playername [] = {"Lestrade", "Tyrion", "Izuna"};
     private JButton voltar;
-    public JanelaIniciar () {
+    public JanelaConfiguraJogador () {
         super ("Jogadores");
         
         setLayout (new GridLayout (4, 1));
@@ -47,7 +46,7 @@ public class JanelaIniciar extends JFrame{
          if (event.getSource() == voltar) {
              encerar();
              
-             Janela open = new Janela();
+             JanelaConfiguracao open = new JanelaConfiguracao();
              open.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
              open.setSize(250, 250);
              open.setLocation(500, 30);
@@ -56,28 +55,28 @@ public class JanelaIniciar extends JFrame{
          if (event.getSource() == player[0]) {
              encerar();
              
-             JanelaLestrade playerLestrad = new JanelaLestrade ();
-             playerLestrad.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-             playerLestrad.setSize(700, 700);
-             playerLestrad.setLocation(300, 30);
-             playerLestrad.setVisible(true);
+             ConfiguraJogador playerLestrade = new ConfiguraJogador ();
+             playerLestrade.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+             playerLestrade.setSize(600, 400);
+             playerLestrade.setLocation(500, 30);
+             playerLestrade.setVisible(true);
          }
          if (event.getSource() == player[1]) {
              encerar();
              
-             JanelaTyrion playerTyrion = new JanelaTyrion ();
+             ConfiguraJogador playerTyrion = new ConfiguraJogador ();
              playerTyrion.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-             playerTyrion.setSize(700, 700);
-             playerTyrion.setLocation(300, 30);
+             playerTyrion.setSize(600, 400);
+             playerTyrion.setLocation(500, 30);
              playerTyrion.setVisible(true);
          }
          if (event.getSource() == player[2]) {
              encerar();
              
-             JanelaIzuna playerIzuna = new JanelaIzuna ();
+             ConfiguraJogador playerIzuna = new ConfiguraJogador ();
              playerIzuna.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-             playerIzuna.setSize(700, 700);
-             playerIzuna.setLocation(300, 30);
+             playerIzuna.setSize(600, 400);
+             playerIzuna.setLocation(500, 30);
              playerIzuna.setVisible(true);
          }
       }
