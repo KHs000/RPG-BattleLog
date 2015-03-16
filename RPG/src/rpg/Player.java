@@ -169,7 +169,7 @@ public class Player {
     }
     
     public void gravaFicha () throws IOException {
-        if (playerFile.canWrite() == true) {
+        if (playerFile.canWrite()) {
             try (BufferedWriter dado = new BufferedWriter (new FileWriter (playerFile))){
                 dado.write("Nome:");
                 dado.write(Name);
