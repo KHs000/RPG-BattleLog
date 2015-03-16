@@ -61,7 +61,7 @@ public class Janela extends JFrame {
          if (event.getSource() == iniciar) {
              encerar();
              
-             JanelaIniciar init = new JanelaIniciar();
+             JanelaJogo init = new JanelaJogo();
              init.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
              init.setSize(250, 250);
              init.setLocation(500, 30);
