@@ -54,30 +54,12 @@ public class JanelaConfiguraJogador extends JFrame{
          }
          if (event.getSource() == player[0]) {
              encerar();
-             
-             ConfiguraJogador playerLestrade = new ConfiguraJogador ();
-             playerLestrade.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-             playerLestrade.setSize(600, 400);
-             playerLestrade.setLocation(500, 30);
-             playerLestrade.setVisible(true);
          }
          if (event.getSource() == player[1]) {
              encerar();
-             
-             ConfiguraJogador playerTyrion = new ConfiguraJogador ();
-             playerTyrion.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-             playerTyrion.setSize(600, 400);
-             playerTyrion.setLocation(500, 30);
-             playerTyrion.setVisible(true);
          }
          if (event.getSource() == player[2]) {
              encerar();
-             
-             ConfiguraJogador playerIzuna = new ConfiguraJogador ();
-             playerIzuna.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-             playerIzuna.setSize(600, 400);
-             playerIzuna.setLocation(500, 30);
-             playerIzuna.setVisible(true);
          }
       }
    }

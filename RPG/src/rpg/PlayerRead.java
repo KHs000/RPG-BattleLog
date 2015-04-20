@@ -16,11 +16,6 @@ import javax.swing.JOptionPane;
 public class PlayerRead {
     private String HP;
     private String MANA;
-    private String STR;
-    private String AGI;
-    private String DEX;
-    private String INT;
-    private String CON;
     private String [] Skill;
     private String [] SkillCost;
     private String [] Inv;
@@ -99,116 +94,6 @@ public class PlayerRead {
     
     public String getName () {
         return Name;
-    }
-    
-    public void setSTR () throws FileNotFoundException {
-        if (playerFile.canRead() == true) {
-            try (FileReader r = new FileReader(playerFile)) {
-                BufferedReader br = new BufferedReader (r);
-                while (br.ready()) {
-                    String aux = br.readLine();
-                    if (aux.startsWith("Cost")) {
-                        br.skip(4);
-                        this.STR = br.readLine();
-                    }
-                }
-            }
-            catch (IOException e) {
-                e.getMessage();
-            }
-        }
-    }
-    
-    public String getSTR () {
-        return STR;
-    }
-    
-    public void setAGI () throws FileNotFoundException {
-        if (playerFile.canRead() == true) {
-            try (FileReader r = new FileReader(playerFile)) {
-                BufferedReader br = new BufferedReader (r);
-                while (br.ready()) {
-                    String aux = br.readLine();
-                    if (aux.startsWith("DEX")) {
-                        br.skip(4);
-                        this.AGI = br.readLine();
-                    }
-                }
-            }
-            catch (IOException e) {
-                e.getMessage();
-            }
-        }
-    }
-    
-    public String getAGI () {
-        return AGI;
-    }
-    
-    public void setDEX () throws FileNotFoundException {
-        if (playerFile.canRead() == true) {
-            try (FileReader r = new FileReader(playerFile)) {
-                BufferedReader br = new BufferedReader (r);
-                while (br.ready()) {
-                    String aux = br.readLine();
-                    if (aux.startsWith("STR")) {
-                        br.skip(4);
-                        this.DEX = br.readLine();
-                    }
-                }
-            }
-            catch (IOException e) {
-                e.getMessage();
-            }
-        }
-    }
-    
-    public String getDEX () {
-        return DEX;
-    }
-    
-    public void setINT () throws FileNotFoundException {
-        if (playerFile.canRead() == true) {
-            try (FileReader r = new FileReader(playerFile)) {
-                BufferedReader br = new BufferedReader (r);
-                while (br.ready()) {
-                    String aux = br.readLine();
-                    if (aux.startsWith("CON")) {
-                        br.skip(4);
-                        this.INT = br.readLine();
-                    }
-                }
-            }
-            catch (IOException e) {
-                e.getMessage();
-            }
-        }
-    }
-    
-    public String getINT () {
-        return INT;
-    }
-    
-    public void setCON () throws FileNotFoundException {
-        if (playerFile.canRead() == true) {
-            try (FileReader r = new FileReader(playerFile)) {
-                BufferedReader br = new BufferedReader (r);
-                while (br.ready()) {
-                    String aux = br.readLine();
-                    if (aux.startsWith("AGI")) {
-                        br.skip(4);
-                        this.CON = br.readLine();
-                    }
-                }
-            }
-            catch (IOException e) {
-                e.getMessage();
-            }
-        }
-    }
-    
-    public String getCON () {
-        return CON;
     }
     
     public void setQuant () {

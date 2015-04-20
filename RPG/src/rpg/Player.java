@@ -16,10 +16,14 @@ public class Player {
     private int HP;
     private int MANA;
     private int STR;
-    private int AGI;
-    private int DEX;
+    private int WIS;
+    private int VIG;
+    private int WIL;
     private int CON;
     private int INT;
+    private int DEX;
+    private int level;
+    private int exp;
     private String Skill [];
     private String SkillCost [];
     private String Item [];
@@ -74,20 +78,28 @@ public class Player {
         this.STR = STR;
     }
 
-    public int getAGI() {
-        return AGI;
+    public int getWIS() {
+        return WIS;
     }
 
-    public void setAGI(int AGI) {
-        this.AGI = AGI;
+    public void setWIS(int WIS) {
+        this.WIS = WIS;
     }
 
-    public int getDEX() {
-        return DEX;
+    public int getVIG() {
+        return VIG;
     }
 
-    public void setDEX(int DEX) {
-        this.DEX = DEX;
+    public void setVIG(int VIG) {
+        this.VIG = VIG;
+    }
+
+    public int getWIL() {
+        return WIL;
+    }
+
+    public void setWIL(int WIL) {
+        this.WIL = WIL;
     }
 
     public int getCON() {
@@ -104,6 +116,14 @@ public class Player {
 
     public void setINT(int INT) {
         this.INT = INT;
+    }
+
+    public int getDEX() {
+        return DEX;
+    }
+
+    public void setDEX(int DEX) {
+        this.DEX = DEX;
     }
 
     public String getSkill(int i) {
@@ -161,11 +181,46 @@ public class Player {
     public void setName(String Name) {
         this.Name = Name;
     }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public int getExp() {
+        return exp;
+    }
+
+    public void setExp(int exp) {
+        this.exp = exp;
+    }
     
     public void Cria () throws IOException {
         if (playerFile.exists() == false) {
             playerFile.createNewFile();
         }
+    }
+    
+    public void adicionaExp (int exp) {
+        this.exp = this.exp + exp;
+
+        if (checaLvlUp(this.exp)) {
+            setLevel (level + 1);
+        }
+    }
+    
+    public boolean checaLvlUp (int exp) {
+        boolean newLevel = false;
+        int ExpNewLevel = (level + 1) * 10;
+        
+        if (this.exp + exp >= ExpNewLevel) {
+            newLevel = true;
+        }
+        
+        return newLevel;
     }
     
     public void gravaFicha () throws IOException {
@@ -182,6 +237,15 @@ public class Player {
                 String mana = String.valueOf(MANA);
                 dado.write(mana);
                 dado.newLine();
+                dado.write("Level:");dado.write(level);dado.newLine();
+                dado.write("XP:");dado.write(exp);dado.newLine();
+                dado.write("STR:");dado.write(STR);dado.newLine();
+                dado.write("WIS:");dado.write(WIS);dado.newLine();
+                dado.write("VIG:");dado.write(VIG);dado.newLine();
+                dado.write("WIL:");dado.write(WIL);dado.newLine();
+                dado.write("CON:");dado.write(CON);dado.newLine();
+                dado.write("INT:");dado.write(INT);dado.newLine();
+                dado.write("DEX:");dado.write(DEX);dado.newLine();
                 for (int i = 0 ; i <= Item.length - 1 ; i++) {
                     dado.write("Item:");
                     dado.write(Item[i]);
@@ -198,27 +262,6 @@ public class Player {
                     dado.write(SkillCost[i]);
                     dado.newLine();
                 }
-                dado.write("STR:");
-                String str = String.valueOf(STR);
-                dado.write(str);
-                dado.newLine();
-                dado.write("DEX:");
-                String dex = String.valueOf(DEX);
-                dado.write(dex);
-                dado.newLine();
-                dado.write("AGI:");
-                String agi = String.valueOf(AGI);
-                dado.write(agi);
-                dado.newLine();
-                dado.write("CON:");
-                String con = String.valueOf(CON);
-                dado.write(con);
-                dado.newLine();
-                dado.write("INT:");
-                String intl = String.valueOf(INT);
-                dado.write(intl);
-                dado.newLine();
-                dado.close();
             }
         }
     }
