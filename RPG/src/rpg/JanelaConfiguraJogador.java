@@ -54,12 +54,27 @@ public class JanelaConfiguraJogador extends JFrame{
          }
          if (event.getSource() == player[0]) {
              encerar();
+             
+             JanelaConfiguraFicha obj = new JanelaConfiguraFicha ();
+             obj.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+             obj.setLocation(500, 30);
+             obj.setVisible(true);
          }
          if (event.getSource() == player[1]) {
              encerar();
+             
+             JanelaConfiguraFicha obj = new JanelaConfiguraFicha ();
+             obj.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+             obj.setLocation(500, 30);
+             obj.setVisible(true);
          }
          if (event.getSource() == player[2]) {
              encerar();
+             
+             JanelaConfiguraFicha obj = new JanelaConfiguraFicha ();
+             obj.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+             obj.setLocation(500, 30);
+             obj.setVisible(true);
          }
       }
    }

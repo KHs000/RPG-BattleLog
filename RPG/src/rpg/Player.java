@@ -24,6 +24,8 @@ public class Player {
     private int DEX;
     private int level;
     private int exp;
+    private int gold;
+    private String classe;
     private String Skill [];
     private String SkillCost [];
     private String Item [];
@@ -52,6 +54,38 @@ public class Player {
         Skill = new String [Quant];
         this.playerFile = new File ("C:\\Users\\Felipe Rabelo\\Documents\\RPGs\\RPG - Skyrim\\Jogadores\\"
         + Name + ".txt");
+    }
+    
+    public Player () {
+        playerFile  = new File ("C:\\Users\\Felipe Rabelo\\Documents\\RPGs\\RPG - Skyrim\\Jogadores\\"
+                + "tempName.txt");
+    }
+
+    public Player(int HP, int MANA, int STR, int WIS, int VIG, int WIL, int CON,
+            int INT, int DEX, int level, int exp, int gold, String classe,
+            String Name) {
+        this.HP = HP;
+        this.MANA = MANA;
+        this.STR = STR;
+        this.WIS = WIS;
+        this.VIG = VIG;
+        this.WIL = WIL;
+        this.CON = CON;
+        this.INT = INT;
+        this.DEX = DEX;
+        this.level = level;
+        this.exp = exp;
+        this.gold = gold;
+        this.classe = classe;
+        this.Name = Name;
+        
+        playerFile  = new File ("C:\\Users\\Felipe Rabelo\\Documents\\RPGs\\RPG - Skyrim\\Jogadores\\"
+                + Name + ".txt");
+    }
+
+    public Player(String[] Item, String[] ItemQuant) {
+        this.Item = Item;
+        this.ItemQuant = ItemQuant;
     }
 
     public int getHP() {
@@ -197,6 +231,22 @@ public class Player {
     public void setExp(int exp) {
         this.exp = exp;
     }
+
+    public int getGold() {
+        return gold;
+    }
+
+    public void setGold(int gold) {
+        this.gold = gold;
+    }
+
+    public String getClasse() {
+        return classe;
+    }
+
+    public void setClasse(String classe) {
+        this.classe = classe;
+    }
     
     public void Cria () throws IOException {
         if (playerFile.exists() == false) {
@@ -226,6 +276,7 @@ public class Player {
     public void gravaFicha () throws IOException {
         if (playerFile.canWrite()) {
             try (BufferedWriter dado = new BufferedWriter (new FileWriter (playerFile))){
+                JOptionPane.showMessageDialog(null, "Cheguei");
                 dado.write("Nome:");
                 dado.write(Name);
                 dado.newLine();
@@ -246,6 +297,16 @@ public class Player {
                 dado.write("CON:");dado.write(CON);dado.newLine();
                 dado.write("INT:");dado.write(INT);dado.newLine();
                 dado.write("DEX:");dado.write(DEX);dado.newLine();
+                dado.write("Gold:");dado.write(gold);dado.newLine();
+                dado.write("Class:");dado.write(classe);dado.newLine();
+                JOptionPane.showMessageDialog(null, "Dados gravados com sucesso!");
+            }
+        }
+    }
+    
+    public void gravaInventario () throws IOException {
+        if (playerFile.canWrite()) {
+            try (BufferedWriter dado = new BufferedWriter (new FileWriter (playerFile))) {
                 for (int i = 0 ; i <= Item.length - 1 ; i++) {
                     dado.write("Item:");
                     dado.write(Item[i]);
@@ -254,7 +315,14 @@ public class Player {
                     dado.write(ItemQuant[i]);
                     dado.newLine();
                 }
-                for (int i = 0 ; i <= Skill.length - 1 ; i ++) {
+            }
+        }
+    }
+    
+    public void gravaSkills () throws IOException {
+        if (playerFile.canWrite()) {
+            try (BufferedWriter dado = new BufferedWriter (new FileWriter (playerFile))) {
+                for (int i = 0 ; i <= Item.length - 1 ; i++) {
                     dado.write("Skill:");
                     dado.write(Skill[i]);
                     dado.newLine();

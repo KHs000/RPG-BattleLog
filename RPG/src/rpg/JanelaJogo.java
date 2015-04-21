@@ -1,5 +1,3 @@
-
-
 package rpg;
 
 import java.awt.Event;
