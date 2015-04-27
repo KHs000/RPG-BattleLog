@@ -384,7 +384,7 @@ public class JanelaConfiguraFicha extends javax.swing.JFrame {
                 jPanel3.add(campoQuant[i], c);
                 row++;
             }
-            JButton salvar = new JButton ("Salvar");
+            JButton salvar = new JButton ("Confirma");
             c.gridy = row;c.gridx = 0;
             c.gridwidth = 2;c.fill = GridBagConstraints.HORIZONTAL;
             c.anchor = GridBagConstraints.NORTH;c.weighty = 1;
@@ -401,13 +401,8 @@ public class JanelaConfiguraFicha extends javax.swing.JFrame {
                             itemQuant[i] = campoQuant[i].getText();
                         }
                         
-                        Player dado = new Player (item, itemQuant);
-                        try {
-                            dado.gravaInventario();
-                            JOptionPane.showMessageDialog(rootPane, "Dados gravados com sucesso!");
-                        } catch (IOException ex) {
-                            Logger.getLogger(JanelaConfiguraFicha.class.getName()).log(Level.SEVERE, null, ex);
-                        }
+                        Auxiliar obj = new Auxiliar ();
+                        obj.setItem(item);obj.setItemQuant(itemQuant);
                     }
                 }
             };
@@ -442,7 +437,7 @@ public class JanelaConfiguraFicha extends javax.swing.JFrame {
                 jPanel2.add(campoCost[i], c);
                 row++;
             }
-            JButton salvar = new JButton ("Salvar");
+            JButton salvar = new JButton ("Confirma");
             c.gridy = row;c.gridx = 0;
             c.gridwidth = 2;c.fill = GridBagConstraints.HORIZONTAL;
             c.anchor = GridBagConstraints.NORTH;c.weighty = 1;
@@ -459,23 +454,23 @@ public class JanelaConfiguraFicha extends javax.swing.JFrame {
                             skillCost[i] = campoCost[i].getText();
                         }
                         
-                        Player dado = new Player ();
-                        dado.setSkill(skill);dado.setSkillCost(skillCost);
-                        try {
-                            dado.gravaSkills();
-                            JOptionPane.showMessageDialog(rootPane, "Dados gravados com sucesso!");
-                        } catch (IOException ex) {
-                            Logger.getLogger(JanelaConfiguraFicha.class.getName()).log(Level.SEVERE, null, ex);
-                        }
+                        Auxiliar obj = new Auxiliar ();
+                        obj.setSkill(skill);obj.setSkillCost(skillCost);
                     }
                 }
             };
+            salvar.addActionListener(e);
             jPanel2.repaint();
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         if (evt.getSource() == jButton3) {
+            Auxiliar obj = new Auxiliar ();
+            String [] item = obj.getItem();
+            String [] itemQuant = obj.getItemQuant();
+            String [] skill = obj.getSkill();
+            String [] skillCost = obj.getSkillCost();
             int hp = Integer.parseInt(jTextField13.getText());
             int mana = Integer.parseInt(jTextField14.getText());
             int str = Integer.parseInt(jTextField4.getText());
@@ -497,6 +492,8 @@ public class JanelaConfiguraFicha extends javax.swing.JFrame {
                 dado.setVIG(vig);dado.setWIL(wil);dado.setCON(con);dado.setINT(Int);
                 dado.setDEX(dex);dado.setLevel(lvl);dado.setExp(exp);dado.setGold(gold);
                 dado.setClasse(Class);dado.setName(Name);
+                dado.setItem(item);dado.setItemQuant(itemQuant);
+                dado.setSkill(skill);dado.setSkillCost(skillCost);
                 dado.gravaFicha();
             } catch (IOException ex) {
                 Logger.getLogger(JanelaConfiguraFicha.class.getName()).log(Level.SEVERE, null, ex);

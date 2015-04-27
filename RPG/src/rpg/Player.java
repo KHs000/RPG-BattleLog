@@ -56,10 +56,7 @@ public class Player {
         + Name + ".txt");
     }
     
-    public Player () {
-        playerFile  = new File ("C:\\Users\\Felipe Rabelo\\Documents\\RPGs\\RPG - Skyrim\\Jogadores\\"
-                + "tempName.txt");
-    }
+    public Player () {}
 
     public Player(int HP, int MANA, int STR, int WIS, int VIG, int WIL, int CON,
             int INT, int DEX, int level, int exp, int gold, String classe,
@@ -81,11 +78,6 @@ public class Player {
         
         playerFile  = new File ("C:\\Users\\Felipe Rabelo\\Documents\\RPGs\\RPG - Skyrim\\Jogadores\\"
                 + Name + ".txt");
-    }
-
-    public Player(String[] Item, String[] ItemQuant) {
-        this.Item = Item;
-        this.ItemQuant = ItemQuant;
     }
 
     public int getHP() {
@@ -274,9 +266,11 @@ public class Player {
     }
     
     public void gravaFicha () throws IOException {
-        if (playerFile.canWrite()) {
+        playerFile = new File (Name + ".txt");
+        playerFile.setWritable(true);
+        JOptionPane.showMessageDialog(null, playerFile.canWrite());
+        if (true) {
             try (BufferedWriter dado = new BufferedWriter (new FileWriter (playerFile))){
-                JOptionPane.showMessageDialog(null, "Cheguei");
                 dado.write("Nome:");
                 dado.write(Name);
                 dado.newLine();
@@ -299,37 +293,15 @@ public class Player {
                 dado.write("DEX:");dado.write(DEX);dado.newLine();
                 dado.write("Gold:");dado.write(gold);dado.newLine();
                 dado.write("Class:");dado.write(classe);dado.newLine();
+                for (int i = 0 ; i < Item.length ; i++) {
+                    dado.write("Item:");dado.write(Item[i]);dado.newLine();
+                    dado.write("Quant:");dado.write(ItemQuant[i]);dado.newLine();
+                }
+                for (int i = 0 ; i < Skill.length ; i++) {
+                    dado.write("Skill");dado.write(Skill[i]);dado.newLine();
+                    dado.write("Cost:");dado.write(SkillCost[i]);dado.newLine();
+                }
                 JOptionPane.showMessageDialog(null, "Dados gravados com sucesso!");
-            }
-        }
-    }
-    
-    public void gravaInventario () throws IOException {
-        if (playerFile.canWrite()) {
-            try (BufferedWriter dado = new BufferedWriter (new FileWriter (playerFile))) {
-                for (int i = 0 ; i <= Item.length - 1 ; i++) {
-                    dado.write("Item:");
-                    dado.write(Item[i]);
-                    dado.newLine();
-                    dado.write("Quant:");
-                    dado.write(ItemQuant[i]);
-                    dado.newLine();
-                }
-            }
-        }
-    }
-    
-    public void gravaSkills () throws IOException {
-        if (playerFile.canWrite()) {
-            try (BufferedWriter dado = new BufferedWriter (new FileWriter (playerFile))) {
-                for (int i = 0 ; i <= Item.length - 1 ; i++) {
-                    dado.write("Skill:");
-                    dado.write(Skill[i]);
-                    dado.newLine();
-                    dado.write("Cost:");
-                    dado.write(SkillCost[i]);
-                    dado.newLine();
-                }
             }
         }
     }
