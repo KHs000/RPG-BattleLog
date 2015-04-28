@@ -6,6 +6,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 /**
@@ -13,6 +14,7 @@ import javax.swing.JOptionPane;
  * @author Felipe Rabelo
  */
 public class Player {
+    private File playerFile;
     private int HP;
     private int MANA;
     private int STR;
@@ -25,59 +27,30 @@ public class Player {
     private int level;
     private int exp;
     private int gold;
+    private String Name;
     private String classe;
     private String Skill [];
     private String SkillCost [];
     private String Item [];
     private String ItemQuant [];
-    private int Quant;
-    private int InvQuant;
-    private String Name;
-    private File playerFile;
+    private String local;
+    private final JFileChooser path;
     
-    public Player (String Name, int Quant, int InvQuant) {
-        playerFile = new File ("C:\\Users\\Felipe Rabelo\\Documents\\RPGs\\RPG - Skyrim\\Jogadores\\"
-                + Name + ".txt");
-        Skill = new String [Quant];
-        SkillCost = new String [Quant];
-        Item = new String [InvQuant];
-        ItemQuant = new String [InvQuant];
-        setQuant(Quant);
-        setInvQuant(InvQuant);
-    }
-
-    public Player(int HP, int MANA, String [] Skill, String Name, int Quant) {
-        this.HP = HP;
-        this.MANA = MANA;
-        this.Skill = Skill;
-        this.Name = Name;
-        Skill = new String [Quant];
-        this.playerFile = new File ("C:\\Users\\Felipe Rabelo\\Documents\\RPGs\\RPG - Skyrim\\Jogadores\\"
-        + Name + ".txt");
-    }
-    
-    public Player () {}
-
-    public Player(int HP, int MANA, int STR, int WIS, int VIG, int WIL, int CON,
-            int INT, int DEX, int level, int exp, int gold, String classe,
-            String Name) {
-        this.HP = HP;
-        this.MANA = MANA;
-        this.STR = STR;
-        this.WIS = WIS;
-        this.VIG = VIG;
-        this.WIL = WIL;
-        this.CON = CON;
-        this.INT = INT;
-        this.DEX = DEX;
-        this.level = level;
-        this.exp = exp;
-        this.gold = gold;
-        this.classe = classe;
-        this.Name = Name;
-        
-        playerFile  = new File ("C:\\Users\\Felipe Rabelo\\Documents\\RPGs\\RPG - Skyrim\\Jogadores\\"
-                + Name + ".txt");
+    public Player () throws IOException {
+        ConfiguracoesSalvas obj = new ConfiguracoesSalvas ();
+        path = new JFileChooser();
+        if (obj.Exists()) {local = obj.SelecionaPath("Skyrim-Jogadores");}
+        else {
+            path.setCurrentDirectory(new java.io.File("."));
+            path.setDialogTitle("Selecione a pasta");
+            path.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+            path.setAcceptAllFileFilterUsed(false);
+            if (path.showOpenDialog(path) == JFileChooser.APPROVE_OPTION) {
+                local = path.getSelectedFile().toString() + "\\";
+                obj.SalvaConfiguracoes(local, "Skyrim-Jogadores");
+            }
+            else {local = null;}
+        }
     }
 
     public int getHP() {
@@ -184,22 +157,6 @@ public class Player {
         this.ItemQuant = ItemQuant.clone();
     }
 
-    public int getQuant() {
-        return Quant;
-    }
-
-    public void setQuant(int Quant) {
-        this.Quant = Quant;
-    }
-
-    public int getInvQuant() {
-        return InvQuant;
-    }
-
-    public void setInvQuant(int InvQuant) {
-        this.InvQuant = InvQuant;
-    }
-
     public String getName() {
         return Name;
     }
@@ -239,6 +196,14 @@ public class Player {
     public void setClasse(String classe) {
         this.classe = classe;
     }
+
+    public String getLocal() {
+        return local;
+    }
+
+    public void setLocal(String local) {
+        this.local = local;
+    }
     
     public void Cria () throws IOException {
         if (playerFile.exists() == false) {
@@ -266,9 +231,7 @@ public class Player {
     }
     
     public void gravaFicha () throws IOException {
-        playerFile = new File (Name + ".txt");
-        playerFile.setWritable(true);
-        JOptionPane.showMessageDialog(null, playerFile.canWrite());
+        playerFile = new File (local + Name + ".txt");
         if (true) {
             try (BufferedWriter dado = new BufferedWriter (new FileWriter (playerFile))){
                 dado.write("Nome:");
@@ -282,16 +245,26 @@ public class Player {
                 String mana = String.valueOf(MANA);
                 dado.write(mana);
                 dado.newLine();
-                dado.write("Level:");dado.write(level);dado.newLine();
-                dado.write("XP:");dado.write(exp);dado.newLine();
-                dado.write("STR:");dado.write(STR);dado.newLine();
-                dado.write("WIS:");dado.write(WIS);dado.newLine();
-                dado.write("VIG:");dado.write(VIG);dado.newLine();
-                dado.write("WIL:");dado.write(WIL);dado.newLine();
-                dado.write("CON:");dado.write(CON);dado.newLine();
-                dado.write("INT:");dado.write(INT);dado.newLine();
-                dado.write("DEX:");dado.write(DEX);dado.newLine();
-                dado.write("Gold:");dado.write(gold);dado.newLine();
+                String lvl = String.valueOf(level);
+                dado.write("Level:");dado.write(lvl);dado.newLine();
+                String xp = String.valueOf(exp);
+                dado.write("XP:");dado.write(xp);dado.newLine();
+                String str = String.valueOf(STR);
+                dado.write("STR:");dado.write(str);dado.newLine();
+                String wis = String.valueOf(WIS);
+                dado.write("WIS:");dado.write(wis);dado.newLine();
+                String vig = String.valueOf(VIG);
+                dado.write("VIG:");dado.write(vig);dado.newLine();
+                String wil = String.valueOf(WIL);
+                dado.write("WIL:");dado.write(wil);dado.newLine();
+                String con = String.valueOf(CON);
+                dado.write("CON:");dado.write(con);dado.newLine();
+                String Int = String.valueOf(INT);
+                dado.write("INT:");dado.write(Int);dado.newLine();
+                String dex = String.valueOf(DEX);
+                dado.write("DEX:");dado.write(dex);dado.newLine();
+                String GOLD = String.valueOf(gold);
+                dado.write("Gold:");dado.write(GOLD);dado.newLine();
                 dado.write("Class:");dado.write(classe);dado.newLine();
                 for (int i = 0 ; i < Item.length ; i++) {
                     dado.write("Item:");dado.write(Item[i]);dado.newLine();
