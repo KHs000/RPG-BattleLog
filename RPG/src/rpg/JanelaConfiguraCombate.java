@@ -9,9 +9,11 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 /**
  *
@@ -19,6 +21,8 @@ import javax.swing.JPanel;
  */
 public class JanelaConfiguraCombate extends JFrame {
     private JButton voltar;
+    private JButton [] jogador;
+    private File ficha;
     private JPanel painel;
     
     public JanelaConfiguraCombate () {
@@ -28,6 +32,7 @@ public class JanelaConfiguraCombate extends JFrame {
         setVisible(true);
         voltar = new JButton ("Voltar");
         painel = new JPanel();
+        JScrollPane scroll = new JScrollPane(painel);
         painel.setLayout(new GridBagLayout());
         add(painel, BorderLayout.CENTER);
         add(voltar, BorderLayout.SOUTH);
@@ -37,7 +42,13 @@ public class JanelaConfiguraCombate extends JFrame {
         
         painel.setBackground(Color.BLACK);
         
+        ficha = new File("C:\\Users\\Felipe Rabelo\\Documents\\RPGs\\RPG - Skyrim\\Jogadores");
+        jogador = new JButton [ficha.listFiles().length];
         
+        for (JButton i : jogador) {
+            i = new JButton();
+            add(i);
+        }
         
         JanelaConfiguraCombate.Event onclick = new JanelaConfiguraCombate.Event();
         voltar.addActionListener(onclick);
