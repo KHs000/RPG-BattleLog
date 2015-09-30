@@ -11,6 +11,7 @@ public class Auxiliar {
     private static String [] itemQuant;
     private static String [] skill;
     private static String [] skillCost;
+    private static String [] name;
 
     public Auxiliar() {}
 
@@ -52,5 +53,13 @@ public class Auxiliar {
 
     public void setSkillCost(String[] skillCost) {
         Auxiliar.skillCost = skillCost;
+    }
+
+    public String[] getName() {
+        return name;
+    }
+
+    public void setNames(String[] name) {
+        Auxiliar.name = name;
     }
 }
