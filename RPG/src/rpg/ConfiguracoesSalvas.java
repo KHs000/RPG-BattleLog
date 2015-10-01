@@ -34,23 +34,41 @@ public class ConfiguracoesSalvas {
     }
     
     public void SalvaConfiguracoes (String path, String key) throws IOException {
-        try (FileWriter fw = new FileWriter(configuracoes, true )) {
+        try (BufferedWriter fw = new BufferedWriter(new FileWriter(configuracoes, true))) {
                 fw.write(key + ":" + path);
+                fw.newLine();
                 fw.close();
             }
     }
     
     public String SelecionaPath (String key) throws IOException{
         String diretorio = null;
+        String aux;
         
         try (BufferedReader br = new BufferedReader (new FileReader (configuracoes))) {
             while (br.ready()) {
-                String aux = br.readLine();
+                aux = br.readLine();
                 if (aux.startsWith(key)) {
                     diretorio = aux.substring(key.length() + 1);
                 }
             }
         }
         return diretorio;
+    }
+    
+    public boolean checaPath (String key) throws IOException {
+        boolean flag = false;
+        String aux;
+        
+        try (BufferedReader br = new BufferedReader (new FileReader (configuracoes))) {
+            while (br.ready()) {
+                aux = br.readLine();
+                if (aux.startsWith(key)) {
+                    flag = true;
+                }
+            }
+        }
+        
+        return flag;
     }
 }

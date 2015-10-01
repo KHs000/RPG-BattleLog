@@ -11,6 +11,9 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -365,7 +368,16 @@ public class JanelaConfiguraFichaMob extends javax.swing.JFrame {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     if (e.getSource() == salvar) {
-
+                        String [] item = new String [campoInv.length];
+                        String [] itemQuant = new String [campoInvQuant.length];
+                        
+                        for (int i = 0 ; i < item.length ; i++) {
+                            item[i] = campoInv[i].getText();
+                            itemQuant[i] = campoInvQuant[i].getText();
+                        }
+                        
+                        Auxiliar obj = new Auxiliar ();
+                        obj.setItem(item);obj.setItemQuant(itemQuant);
                     }
                 }
             };
@@ -408,7 +420,16 @@ public class JanelaConfiguraFichaMob extends javax.swing.JFrame {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     if (e.getSource() == salvar) {
-
+                        String [] skill = new String [campoSkill.length];
+                        String [] skillCost = new String [campoSkillCost.length];
+                        
+                        for (int i = 0 ; i < skill.length ; i++) {
+                            skill[i] = campoSkill[i].getText();
+                            skillCost[i] = campoSkillCost[i].getText();
+                        }
+                        
+                        Auxiliar obj = new Auxiliar ();
+                        obj.setSkill(skill);obj.setSkillCost(skillCost);
                     }
                 }
             };
@@ -420,6 +441,35 @@ public class JanelaConfiguraFichaMob extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         if (evt.getSource() == jButton4) {
             Auxiliar obj = new Auxiliar ();
+            
+            String [] item = obj.getItem();
+            String [] itemQuant = obj.getItemQuant();
+            String [] skill = obj.getSkill();
+            String [] skillCost = obj.getSkillCost();
+            String Name = jTextField1.getText();
+            int hp = Integer.parseInt(jTextField13.getText());
+            int mana = Integer.parseInt(jTextField4.getText());
+            int str = Integer.parseInt(jTextField5.getText());
+            int wis = Integer.parseInt(jTextField6.getText());
+            int vig = Integer.parseInt(jTextField7.getText());
+            int wil = Integer.parseInt(jTextField8.getText());
+            int con = Integer.parseInt(jTextField9.getText());
+            int Int = Integer.parseInt(jTextField10.getText());
+            int dex = Integer.parseInt(jTextField11.getText());
+            int lvl = Integer.parseInt(jTextField2.getText());
+            int expDrop = Integer.parseInt(jTextField12.getText());
+            
+            try {
+                Mob dado = new Mob ();
+                dado.setHP(hp);dado.setMANA(mana);dado.setSTR(str);dado.setWIS(wis);
+                dado.setVIG(vig);dado.setWIL(wil);dado.setCON(con);dado.setINT(Int);
+                dado.setDEX(dex);dado.setLevel(lvl);dado.setExpDrop(expDrop);
+                dado.setName(Name);dado.setItem(item);dado.setItemQuant(itemQuant);
+                dado.setSkill(skill);dado.setSkillCost(skillCost);
+                dado.gravaFicha();
+            } catch (IOException ex) {
+                Logger.getLogger(JanelaConfiguraFicha.class.getName()).log(Level.SEVERE, null, ex);
+            }
             
             obj = null;
         }
