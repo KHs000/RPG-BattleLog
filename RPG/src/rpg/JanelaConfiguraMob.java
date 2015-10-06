@@ -5,6 +5,9 @@ package rpg;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
@@ -59,12 +62,29 @@ public class JanelaConfiguraMob extends JFrame{
             if (event.getSource() == modificar) {
                 encerrar();
                 
+                try {
+                    JanelaEditarMob obj = new JanelaEditarMob();
+                    obj.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    obj.setLocation(500, 30);
+                    obj.setSize(400, 400);
+                    obj.setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(JanelaConfiguraMob.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 
             }
             if (event.getSource() == excluir) {
                 encerrar();
                 
-                
+                try {
+                    JanelaDeletarMob obj = new JanelaDeletarMob ();
+                    obj.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    obj.setLocation(500, 30);
+                    obj.setSize(400, 400);
+                    obj.setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(JanelaConfiguraMob.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
             if (event.getSource() == voltar) {
                 encerrar();
