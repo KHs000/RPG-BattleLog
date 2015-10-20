@@ -321,5 +321,8 @@ public class MobReader {
         return cont;
     }
     
-    public void Deleta () {mobFicha.delete();}
+    public void Deleta () {
+        if (mobFicha.delete()) {JOptionPane.showMessageDialog(null, "Arquivo deletado.");} //PQ VC É TÃO ALEATÓRIO?????
+        else {JOptionPane.showMessageDialog(null, "Arquivo não deletado.");}
+    }
 }

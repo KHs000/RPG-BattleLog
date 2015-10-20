@@ -9,6 +9,9 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -202,13 +205,17 @@ public class JanelaLestrade extends JFrame{
       @Override
       public void actionPerformed( ActionEvent event ){
           if (event.getSource() == Voltar) {
-              encerar();
-              
-             JanelaFichaJogador init = new JanelaFichaJogador();
-             init.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
-             init.setSize(250, 250);
-             init.setLocation(500, 30);
-             init.setVisible( true );
+              try {
+                  encerar();
+                  
+                  JanelaFichaJogador init = new JanelaFichaJogador();
+                  init.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
+                  init.setSize(250, 250);
+                  init.setLocation(500, 30);
+                  init.setVisible( true );
+              } catch (IOException ex) {
+                  Logger.getLogger(JanelaLestrade.class.getName()).log(Level.SEVERE, null, ex);
+              }
           }
       }
    }

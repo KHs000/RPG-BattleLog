@@ -2,39 +2,77 @@
 
 package rpg;
 
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Felipe Rabelo
  */
 public class JanelaFichaJogador extends JFrame {
-    private JButton player [];
-    private String playername [] = {"Lestrade", "Tyrion", "Izuna"};
+    private File [] jogadorLista;
+    private final File jogadorPasta;
+    private JButton jogadorTemp;
+    private JButton [] jogador;
     private JButton voltar;
+    private final String local;
+    private String [] jogadorNome;
+    private final JFileChooser path = new JFileChooser();
     
-    public JanelaFichaJogador () {
+    public JanelaFichaJogador () throws IOException {
         super ("Jogadores");
         
-        setLayout (new GridLayout (4, 1));
-        setVisible (true);
-        player = new JButton [playername.length];
-        voltar = new JButton("Voltar");
-        for (int i = 0 ; i < player.length ; i++) {
-            player[i] = new JButton (playername[i]);
-            add(player[i]);
+        ConfiguracoesSalvas temp = new ConfiguracoesSalvas ();
+        if (temp.Exists() && temp.checaPath("Skyrim-Jogadores")) {local = temp.SelecionaPath("Skyrim-Jogadores");}
+        else {
+            path.setCurrentDirectory(new java.io.File("."));
+            path.setDialogTitle("Selecione a pasta");
+            path.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+            path.setAcceptAllFileFilterUsed(false);
+            if (path.showOpenDialog(path) == JFileChooser.APPROVE_OPTION) {
+                local = path.getSelectedFile().toString() + "\\";
+                temp.SalvaConfiguracoes(local, "Skyrim-Jogadores");
+            }
+            else {local = null;}
         }
-        add(voltar);
         
-        JanelaFichaJogador.Event onclick = new JanelaFichaJogador.Event ();
-        for (int i = 0 ; i < player.length ; i++) {
-            player[i].addActionListener(onclick);
+        jogadorPasta = new File (local);
+        if (jogadorPasta.listFiles().length > 0) {
+            jogadorLista = new File [jogadorPasta.listFiles().length];
+            jogadorLista = jogadorPasta.listFiles();
+            jogadorNome = new String[jogadorPasta.listFiles().length];int index = 0;
+            String aux;
+            for (File i : jogadorLista) {
+                if (i.canRead()) {
+                    BufferedReader br = new BufferedReader(new FileReader(i));
+                    while (br.ready()) {
+                        aux = br.readLine();
+                        if (aux.substring(0, 4).equals("Nome")) {jogadorNome[index] = aux.substring(5);index++;}
+                    }
+                }
+            }
+            Event e = new Event ();
+            
+            jogador = new JButton [jogadorNome.length];
+            for (int i = 0 ; i < jogador.length ; i++) {
+                jogador[i] = new JButton (jogadorNome[i]);
+                add(jogador[i]);
+                jogador[i].addActionListener(e);
+                JOptionPane.showMessageDialog(null, i);
+            }
         }
-        voltar.addActionListener(onclick);
+        else {JOptionPane.showMessageDialog(null, "Não há jogadores");}
+        
+        add(voltar);
+        voltar.addActionListener(new Event());
     }
     
     public void encerar () {
@@ -53,32 +91,12 @@ public class JanelaFichaJogador extends JFrame {
              open.setLocation(500, 30);
              open.setVisible(true);
          }
-         if (event.getSource() == player[0]) {
-             encerar();
-             
-             JanelaLestrade playerLestrad = new JanelaLestrade ();
-             playerLestrad.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-             playerLestrad.setSize(700, 700);
-             playerLestrad.setLocation(325, 30);
-             playerLestrad.setVisible(true);
-         }
-         if (event.getSource() == player[1]) {
-             encerar();
-             
-             JanelaTyrion playerTyrion = new JanelaTyrion ();
-             playerTyrion.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-             playerTyrion.setSize(700, 700);
-             playerTyrion.setLocation(325, 30);
-             playerTyrion.setVisible(true);
-         }
-         if (event.getSource() == player[2]) {
-             encerar();
-             
-             JanelaIzuna playerIzuna = new JanelaIzuna ();
-             playerIzuna.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-             playerIzuna.setSize(700, 700);
-             playerIzuna.setLocation(325, 30);
-             playerIzuna.setVisible(true);
+         if (event.getSource() == jogador) {
+             for (JButton jogador1 : jogador) {
+                 if (event.getSource() == jogador1) {
+                     JOptionPane.showMessageDialog(null, jogador1.getName());
+                 }
+             }
          }
       }
    }

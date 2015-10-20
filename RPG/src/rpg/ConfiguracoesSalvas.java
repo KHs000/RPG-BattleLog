@@ -5,6 +5,7 @@ package rpg;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -63,9 +64,7 @@ public class ConfiguracoesSalvas {
         try (BufferedReader br = new BufferedReader (new FileReader (configuracoes))) {
             while (br.ready()) {
                 aux = br.readLine();
-                if (aux.startsWith(key)) {
-                    flag = true;
-                }
+                if (aux.startsWith(key)) {flag = true;}
             }
         }
         

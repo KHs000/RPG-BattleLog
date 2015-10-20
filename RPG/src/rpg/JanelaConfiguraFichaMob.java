@@ -364,21 +364,19 @@ public class JanelaConfiguraFichaMob extends javax.swing.JFrame {
             c.gridwidth = 2;c.fill = GridBagConstraints.HORIZONTAL;
             c.anchor = GridBagConstraints.NORTH;c.weighty = 1;
             jPanel3.add(salvar, c);
-            ActionListener e = new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    if (e.getSource() == salvar) {
-                        String [] item = new String [campoInv.length];
-                        String [] itemQuant = new String [campoInvQuant.length];
-                        
-                        for (int i = 0 ; i < item.length ; i++) {
-                            item[i] = campoInv[i].getText();
-                            itemQuant[i] = campoInvQuant[i].getText();
-                        }
-                        
-                        Auxiliar obj = new Auxiliar ();
-                        obj.setItem(item);obj.setItemQuant(itemQuant);
+            ActionListener e = (ActionEvent e1) -> {
+                if (e1.getSource() == salvar) {
+                    jPanel3.remove(salvar);jPanel3.repaint();
+                    String [] item = new String [campoInv.length];
+                    String [] itemQuant = new String [campoInvQuant.length];
+                    
+                    for (int i = 0 ; i < item.length ; i++) {
+                        item[i] = campoInv[i].getText();
+                        itemQuant[i] = campoInvQuant[i].getText();
                     }
+                    
+                    Auxiliar obj = new Auxiliar ();
+                    obj.setItem(item);obj.setItemQuant(itemQuant);
                 }
             };
             salvar.addActionListener(e);
@@ -416,21 +414,19 @@ public class JanelaConfiguraFichaMob extends javax.swing.JFrame {
             c.gridwidth = 2;c.fill = GridBagConstraints.HORIZONTAL;
             c.anchor = GridBagConstraints.NORTH;c.weighty = 1;
             jPanel2.add(salvar, c);
-            ActionListener e = new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    if (e.getSource() == salvar) {
-                        String [] skill = new String [campoSkill.length];
-                        String [] skillCost = new String [campoSkillCost.length];
-                        
-                        for (int i = 0 ; i < skill.length ; i++) {
-                            skill[i] = campoSkill[i].getText();
-                            skillCost[i] = campoSkillCost[i].getText();
-                        }
-                        
-                        Auxiliar obj = new Auxiliar ();
-                        obj.setSkill(skill);obj.setSkillCost(skillCost);
+            ActionListener e = (ActionEvent e1) -> {
+                if (e1.getSource() == salvar) {
+                    jPanel2.remove(salvar);jPanel2.repaint();
+                    String [] skill = new String [campoSkill.length];
+                    String [] skillCost = new String [campoSkillCost.length];
+                    
+                    for (int i = 0 ; i < skill.length ; i++) {
+                        skill[i] = campoSkill[i].getText();
+                        skillCost[i] = campoSkillCost[i].getText();
                     }
+                    
+                    Auxiliar obj = new Auxiliar ();
+                    obj.setSkill(skill);obj.setSkillCost(skillCost);
                 }
             };
             salvar.addActionListener(e);

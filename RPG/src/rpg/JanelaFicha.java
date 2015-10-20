@@ -5,6 +5,9 @@ package rpg;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
@@ -57,13 +60,17 @@ public class JanelaFicha extends JFrame{
             open.setVisible(true);
             }
             if (event.getSource() == jogadores) {
-                encerar();
-                
-                JanelaFichaJogador open = new JanelaFichaJogador ();
-                open.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                open.setSize(250, 250);
-                open.setLocation(500, 30);
-                open.setVisible(true);
+                try {
+                    encerar();
+                    
+                    JanelaFichaJogador open = new JanelaFichaJogador ();
+                    open.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    open.setSize(250, 250);
+                    open.setLocation(500, 30);
+                    open.setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(JanelaFicha.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
             if (event.getSource() == npc) {
                 encerar();
