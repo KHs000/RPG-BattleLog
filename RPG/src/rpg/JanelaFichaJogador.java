@@ -2,16 +2,21 @@
 
 package rpg;
 
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 /**
  *
@@ -23,12 +28,16 @@ public class JanelaFichaJogador extends JFrame {
     private JButton jogadorTemp;
     private JButton [] jogador;
     private JButton voltar;
+    private JPanel areaConteudo;
     private final String local;
     private String [] jogadorNome;
     private final JFileChooser path = new JFileChooser();
     
     public JanelaFichaJogador () throws IOException {
         super ("Jogadores");
+        
+        setLayout(new BorderLayout ());
+        areaConteudo = new JPanel (new FlowLayout());
         
         ConfiguracoesSalvas temp = new ConfiguracoesSalvas ();
         if (temp.Exists() && temp.checaPath("Skyrim-Jogadores")) {local = temp.SelecionaPath("Skyrim-Jogadores");}
@@ -64,26 +73,27 @@ public class JanelaFichaJogador extends JFrame {
             jogador = new JButton [jogadorNome.length];
             for (int i = 0 ; i < jogador.length ; i++) {
                 jogador[i] = new JButton (jogadorNome[i]);
-                add(jogador[i]);
+                areaConteudo.add(jogador[i]);
                 jogador[i].addActionListener(e);
-                JOptionPane.showMessageDialog(null, i);
             }
         }
-        else {JOptionPane.showMessageDialog(null, "Não há jogadores");}
+        else {JOptionPane.showMessageDialog(null, "Não há jogadores");encerrar();}
         
-        add(voltar);
+        add(areaConteudo, BorderLayout.CENTER);
+        voltar = new JButton ("Voltar");
+        add(voltar, BorderLayout.SOUTH);
         voltar.addActionListener(new Event());
     }
     
-    public void encerar () {
+    public void encerrar () {
         this.dispose();
     }
     
-    private class Event implements ActionListener{
+    private class Event extends MostraFichaJogador implements ActionListener{
       @Override
       public void actionPerformed( ActionEvent event ){
          if (event.getSource() == voltar) {
-             encerar();
+             encerrar();
              
             JanelaFicha open = new JanelaFicha();
              open.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -91,11 +101,26 @@ public class JanelaFichaJogador extends JFrame {
              open.setLocation(500, 30);
              open.setVisible(true);
          }
-         if (event.getSource() == jogador) {
-             for (JButton jogador1 : jogador) {
-                 if (event.getSource() == jogador1) {
-                     JOptionPane.showMessageDialog(null, jogador1.getName());
-                 }
+         if (event.getSource() instanceof JButton && event.getSource() != voltar) {
+             try {
+                 PlayerRead player = new PlayerRead (((JButton)event.getSource()).getText());
+                 MostraFichaJogador sheet = new MostraFichaJogador ();
+                 
+                 player.setName();
+                 sheet.campoNome.setText(player.getName());
+                 sheet.campoNome.setEditable(false);
+                 JOptionPane.showMessageDialog(null, player.getName());
+                 
+                 player.setHP();
+                 sheet.campoHP.setText(player.getHP());
+                 sheet.campoHP.setEditable(false);
+                 JOptionPane.showMessageDialog(null, player.getHP());
+                 
+                 sheet.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                 sheet.setLocation(470, 30);
+                 sheet.setVisible(true);
+             } catch (IOException ex) {
+                 Logger.getLogger(JanelaFichaJogador.class.getName()).log(Level.SEVERE, null, ex);
              }
          }
       }

@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -42,14 +43,14 @@ public class PlayerRead {
         + Name + ".txt");
     }
     
-    public void Testa () throws FileNull {
-        if (playerFile.exists() == false)
-            throw new FileNull();
+    public PlayerRead (String name) throws IOException {
+        ConfiguracoesSalvas manip = new ConfiguracoesSalvas ();
+        playerFile = new File (manip.SelecionaPath("Skyrim-Jogadores") + "\\" + name);
     }
     
-    public String getHP () {
-        return HP;
-    }
+    public void Testa () throws FileNull {if (playerFile.exists() == false) throw new FileNull();}
+    
+    public String getHP () {return HP;}
     
     public void setHP () throws FileNotFoundException {
         if (playerFile.canRead() == true) {
@@ -69,9 +70,7 @@ public class PlayerRead {
         }
     }
     
-    public String getMANA () {
-        return MANA;
-    }
+    public String getMANA () {return MANA;}
     
     public void setMANA () throws FileNotFoundException {
         if (playerFile.canRead() == true) {
@@ -91,8 +90,21 @@ public class PlayerRead {
         }
     }
     
-    public String getName () {
-        return Name;
+    public String getName () {return Name;}
+    
+    public void setName () throws IOException {
+        if (playerFile.canRead() == true) {
+            try (BufferedReader br = new BufferedReader (new FileReader (playerFile))) {
+                String aux;
+                while (br.ready()) {
+                    aux = br.readLine();
+                    if (aux.startsWith("Nome:")) {
+                        br.skip(5);
+                        this.Name = br.readLine();
+                    }
+                }
+            }
+        }
     }
     
     public void setQuant () {
@@ -112,9 +124,7 @@ public class PlayerRead {
         }
     }
     
-    public int getQuant () {
-        return Quant;
-    }
+    public int getQuant () {return Quant;}
     
     public void setQuantInv () {
         if (playerFile.canRead() == true) {
@@ -133,9 +143,7 @@ public class PlayerRead {
         }
     }
     
-    public int getQuantInv () {
-        return QuantInv;
-    }
+    public int getQuantInv () {return QuantInv;}
     
     public void setInv () {
         Inv = new String [getQuantInv()];
@@ -161,13 +169,9 @@ public class PlayerRead {
         }
     }
     
-    public String [] getInv () {
-        return Inv;
-    }
+    public String [] getInv () {return Inv;}
     
-    public String getInv (int i) {
-        return Inv[i];
-    }
+    public String getInv (int i) {return Inv[i];}
     
     public void setInvQuant () {
         InvQuant = new String [getQuantInv()];
@@ -190,21 +194,13 @@ public class PlayerRead {
         }
     }
     
-    public String [] getInvQuant () {
-        return InvQuant;
-    }
+    public String [] getInvQuant () {return InvQuant;}
     
-    public String getInvQuant (int i) {
-        return InvQuant[i];
-    }
+    public String getInvQuant (int i) {return InvQuant[i];}
 
-    public String [] getSkill() {
-        return Skill;
-    }
+    public String [] getSkill() {return Skill;}
     
-    public String getSkill (int i) {
-        return Skill[i];
-    }
+    public String getSkill (int i) {return Skill[i];}
     
     public void setSkill () {
         Skill = new String [getQuant() + 1];
@@ -230,13 +226,9 @@ public class PlayerRead {
         }
     }
     
-    public String [] getSkillCost () {
-        return SkillCost;
-    }
+    public String [] getSkillCost () {return SkillCost;}
     
-    public String getSkillCost (int i) {
-        return SkillCost[i];
-    }
+    public String getSkillCost (int i) {return SkillCost[i];}
     
     public void setSkillCost () {
         SkillCont = 0;

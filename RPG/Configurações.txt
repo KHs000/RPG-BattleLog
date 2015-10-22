@@ -1,2 +1,1 @@
-Skyrim-Mobs:C:\Users\Felipe Rabelo\Documents\RPGs\RPG - Skyrim\Mobs\
-Skyrim-Jogadores:C:\Users\Felipe Rabelo\Documents\RPGs\RPG - Skyrim\Jogadores\
+Skyrim-Jogadores:C:\Users\Aluno\Desktop\teste\
