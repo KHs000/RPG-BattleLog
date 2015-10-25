@@ -16,6 +16,17 @@ import javax.swing.JOptionPane;
 public class PlayerRead {
     private String HP;
     private String MANA;
+    private String lvl; 
+    private String xp;
+    private String gold;
+    private String classe;
+    private String STR;
+    private String WIS;
+    private String VIG;
+    private String WIL;
+    private String CON;
+    private String INT;
+    private String DEX;
     private String [] Skill;
     private String [] SkillCost;
     private String [] Inv;
@@ -45,7 +56,7 @@ public class PlayerRead {
     
     public PlayerRead (String name) throws IOException {
         ConfiguracoesSalvas manip = new ConfiguracoesSalvas ();
-        playerFile = new File (manip.SelecionaPath("Skyrim-Jogadores") + "\\" + name);
+        playerFile = new File (manip.SelecionaPath("Skyrim-Jogadores") + "\\" + name + ".txt");
     }
     
     public void Testa () throws FileNull {if (playerFile.exists() == false) throw new FileNull();}
@@ -58,10 +69,7 @@ public class PlayerRead {
                 BufferedReader br = new BufferedReader(r);
                 while (br.ready()) {
                     String aux = br.readLine();
-                    if (aux.substring(0, 5).equals("Nome:")) {
-                        br.skip(3);
-                        this.HP = br.readLine();
-                    }
+                    if (aux.startsWith("HP:")) {this.HP = aux.substring(3, aux.length());}
                 }
             }
             catch (IOException e) {
@@ -78,10 +86,7 @@ public class PlayerRead {
                 BufferedReader br = new BufferedReader(r);
                 while (br.ready()) {
                     String aux = br.readLine();
-                    if (aux.substring(0, 3).equals("HP:")) {
-                        br.skip(5);
-                        this.MANA = br.readLine();
-                    }
+                    if (aux.startsWith("MANA:")) {this.MANA = aux.substring(5, aux.length());}
                 }
             }
             catch (IOException e) {
@@ -98,28 +103,174 @@ public class PlayerRead {
                 String aux;
                 while (br.ready()) {
                     aux = br.readLine();
-                    if (aux.startsWith("Nome:")) {
-                        br.skip(5);
-                        this.Name = br.readLine();
-                    }
+                    if (aux.startsWith("Nome:")) {this.Name = aux.substring(5, aux.length());}
                 }
             }
         }
     }
     
-    public void setQuant () {
+    public String getLVL () {return lvl;}
+    
+    public void setLVL () throws IOException{
         if (playerFile.canRead() == true) {
-            try (FileReader r = new FileReader(playerFile)) {
-                BufferedReader br = new BufferedReader(r);
+            try (BufferedReader br = new BufferedReader (new FileReader (playerFile) )) {
+                String aux;
                 while (br.ready()) {
-                    String aux = br.readLine();
-                    if (aux.startsWith("Skill:")) {
-                        Quant++;
-                    }
+                    aux = br.readLine();
+                    if (aux.startsWith("Level:")) {this.lvl = aux.substring(6, aux.length());}
                 }
             }
-            catch (IOException e) {
-                e.getMessage();
+        }
+    }
+    
+    public String getXP () {return xp;}
+    
+    public void setXP () throws IOException{
+        if (playerFile.canRead() == true) {
+            try (BufferedReader br = new BufferedReader (new FileReader (playerFile) )) {
+                String aux;
+                while (br.ready()) {
+                    aux = br.readLine();
+                    if (aux.startsWith("XP:")) {this.xp = aux.substring(3, aux.length());}
+                }
+            }
+        }
+    }
+    
+    public String getGold () {return gold;}
+    
+    public void setGold () throws IOException{
+        if (playerFile.canRead() == true) {
+            try (BufferedReader br = new BufferedReader (new FileReader (playerFile) )) {
+                String aux;
+                while (br.ready()) {
+                    aux = br.readLine();
+                    if (aux.startsWith("Gold:")) {this.gold = aux.substring(5, aux.length());}
+                }
+            }
+        }
+    }
+    
+    public String getClasse () {return classe;}
+    
+    public void setClasse () throws IOException {
+        if (playerFile.canRead() == true) {
+            try (BufferedReader br = new BufferedReader (new FileReader (playerFile) )) {
+                String aux;
+                while (br.ready()) {
+                    aux = br.readLine();
+                    if (aux.startsWith("Class:")) {this.classe = aux.substring(6, aux.length());}
+                }
+            }
+        }
+    }
+    
+    public String getSTR () {return STR;}
+    
+    public void setSTR () throws IOException {
+        if (playerFile.canRead() == true) {
+            try (BufferedReader br = new BufferedReader (new FileReader (playerFile) )) {
+                String aux;
+                while (br.ready()) {
+                    aux = br.readLine();
+                    if (aux.startsWith("STR:")) {this.STR = aux.substring(4, aux.length());}
+                }
+            }
+        }
+    }
+    
+    public String getWIS () {return WIS;}
+    
+    public void setWIS () throws IOException {
+        if (playerFile.canRead() == true) {
+            try (BufferedReader br = new BufferedReader (new FileReader (playerFile) )) {
+                String aux;
+                while (br.ready()) {
+                    aux = br.readLine();
+                    if (aux.startsWith("WIS:")) {this.WIS = aux.substring(4, aux.length());}
+                }
+            }
+        }
+    }
+    
+    public String getVIG () {return VIG;}
+    
+    public void setVIG () throws IOException {
+        if (playerFile.canRead() == true) {
+            try (BufferedReader br = new BufferedReader (new FileReader (playerFile) )) {
+                String aux;
+                while (br.ready()) {
+                    aux = br.readLine();
+                    if (aux.startsWith("VIG:")) {this.VIG = aux.substring(4, aux.length());}
+                }
+            }
+        }
+    }
+    
+    public String getWIL () {return WIL;}
+    
+    public void setWIL () throws IOException {
+        if (playerFile.canRead() == true) {
+            try (BufferedReader br = new BufferedReader (new FileReader (playerFile) )) {
+                String aux;
+                while (br.ready()) {
+                    aux = br.readLine();
+                    if (aux.startsWith("WIL:")) {this.WIL = aux.substring(4, aux.length());}
+                }
+            }
+        }
+    }
+    
+    public String getCON () {return CON;}
+    
+    public void setCON () throws IOException {
+        if (playerFile.canRead() == true) {
+            try (BufferedReader br = new BufferedReader (new FileReader (playerFile) )) {
+                String aux;
+                while (br.ready()) {
+                    aux = br.readLine();
+                    if (aux.startsWith("CON:")) {this.CON = aux.substring(4, aux.length());}
+                }
+            }
+        }
+    }
+    
+    public String getINT () {return INT;}
+    
+    public void setINT () throws IOException {
+        if (playerFile.canRead() == true) {
+            try (BufferedReader br = new BufferedReader (new FileReader (playerFile) )) {
+                String aux;
+                while (br.ready()) {
+                    aux = br.readLine();
+                    if (aux.startsWith("INT:")) {this.INT = aux.substring(4, aux.length());}
+                }
+            }
+        }
+    }
+    
+    public String getDEX () {return DEX;}
+    
+    public void setDEX () throws IOException {
+        if (playerFile.canRead() == true) {
+            try (BufferedReader br = new BufferedReader (new FileReader (playerFile) )) {
+                String aux;
+                while (br.ready()) {
+                    aux = br.readLine();
+                    if (aux.startsWith("DEX:")) {this.DEX = aux.substring(4, aux.length());}
+                }
+            }
+        }
+    }
+    
+    public void setQuant () throws IOException{
+        if (playerFile.canRead() == true) {
+            try (BufferedReader br = new BufferedReader (new FileReader(playerFile))) {
+                String aux;
+                while (br.ready()) {
+                    aux = br.readLine();
+                    if (aux.startsWith("Skill:")) {Quant++;}
+                }
             }
         }
     }
@@ -147,20 +298,13 @@ public class PlayerRead {
     
     public void setInv () {
         Inv = new String [getQuantInv()];
+        int c = 0;
         if (playerFile.canRead() == true) {
             try (FileReader r = new FileReader(playerFile)) {
                 BufferedReader br = new BufferedReader(r);
                 while (br.ready()) {
                     String aux = br.readLine();
-                    if (aux.startsWith("MANA:")) {
-                        br.skip(5);
-                        this.Inv[0] = br.readLine();
-                    }
-                    if (aux.startsWith("Quant:")) {
-                        br.skip(5);
-                        Inv[ContInv] = br.readLine();
-                        this.ContInv++;
-                    }
+                    if (aux.startsWith("Item:")) {this.Inv[c] = aux.substring(5, aux.length());c++;}
                 }
             }
             catch (IOException e) {
@@ -181,11 +325,7 @@ public class PlayerRead {
                 BufferedReader br = new BufferedReader(r);
                 while (br.ready()) {
                     String aux = br.readLine();
-                    if (aux.startsWith("Item:")) {
-                        br.skip(6);
-                        this.InvQuant[c] = br.readLine();
-                        c++;
-                    }
+                    if (aux.startsWith("Quant:")) {this.InvQuant[c] = aux.substring(6, aux.length());c++;}
                 }
             }
             catch (IOException e) {
@@ -202,26 +342,16 @@ public class PlayerRead {
     
     public String getSkill (int i) {return Skill[i];}
     
-    public void setSkill () {
-        Skill = new String [getQuant() + 1];
+    public void setSkill () throws IOException{
+        Skill = new String [getQuant()];
+        int c = 0;
         if (playerFile.canRead() == true) {
-            try (FileReader r = new FileReader(playerFile)) {
-                BufferedReader br = new BufferedReader(r);
+            try (BufferedReader br = new BufferedReader (new FileReader(playerFile))) {
+                String aux;
                 while (br.ready()) {
-                    String aux = br.readLine();
-                    if (aux.startsWith("Quant:")) {
-                        br.skip(6);
-                        this.Skill[0] = br.readLine();
-                    }
-                    if (aux.startsWith("Cost:")) {
-                        br.skip(6);
-                        this.Skill[SkillCont] = br.readLine();
-                        SkillCont++;
-                    }
+                    aux = br.readLine();
+                    if (aux.startsWith("Skill:")) {this.Skill[c] = aux.substring(6, aux.length());c++;}
                 }
-            }
-            catch (IOException e) {
-                e.getMessage();
             }
         }
     }
@@ -230,23 +360,16 @@ public class PlayerRead {
     
     public String getSkillCost (int i) {return SkillCost[i];}
     
-    public void setSkillCost () {
-        SkillCont = 0;
+    public void setSkillCost () throws IOException{
         SkillCost = new String [getQuant()];
+        int c = 0;
         if (playerFile.canRead() == true) {
-            try (FileReader r = new FileReader(playerFile)) {
-                BufferedReader br = new BufferedReader(r);
+            try (BufferedReader br = new BufferedReader (new FileReader (playerFile))) {
+                String aux;
                 while (br.ready()) {
-                    String aux = br.readLine();
-                    if (aux.startsWith("Skill:")) {
-                        br.skip(5);
-                        this.SkillCost[SkillCont] = br.readLine();
-                        SkillCont++;
-                    }
+                    aux = br.readLine();
+                    if (aux.startsWith("Cost:")) {this.SkillCost[c] = aux.substring(5, aux.length());c++;}
                 }
-            }
-            catch (IOException e) {
-                e.getMessage();
             }
         }
     }

@@ -271,7 +271,7 @@ public class Player {
                     dado.write("Quant:");dado.write(ItemQuant[i]);dado.newLine();
                 }
                 for (int i = 0 ; i < Skill.length ; i++) {
-                    dado.write("Skill");dado.write(Skill[i]);dado.newLine();
+                    dado.write("Skill:");dado.write(Skill[i]);dado.newLine();
                     dado.write("Cost:");dado.write(SkillCost[i]);dado.newLine();
                 }
                 JOptionPane.showMessageDialog(null, "Dados gravados com sucesso!");

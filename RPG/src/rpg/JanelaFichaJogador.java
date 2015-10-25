@@ -4,6 +4,7 @@ package rpg;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -12,11 +13,13 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.scene.paint.Color;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 /**
  *
@@ -109,12 +112,92 @@ public class JanelaFichaJogador extends JFrame {
                  player.setName();
                  sheet.campoNome.setText(player.getName());
                  sheet.campoNome.setEditable(false);
-                 JOptionPane.showMessageDialog(null, player.getName());
                  
                  player.setHP();
                  sheet.campoHP.setText(player.getHP());
                  sheet.campoHP.setEditable(false);
-                 JOptionPane.showMessageDialog(null, player.getHP());
+                 
+                 player.setMANA();
+                 sheet.campoMP.setText(player.getMANA());
+                 sheet.campoMP.setEditable(false);
+                 
+                 player.setLVL();
+                 sheet.campoLVL.setText(player.getLVL());
+                 sheet.campoLVL.setEditable(false);
+                 
+                 player.setXP();
+                 sheet.campoXP.setText(player.getXP());
+                 sheet.campoXP.setEditable(false);
+                 
+                 player.setClasse();
+                 sheet.campoClass.setText(player.getClasse());
+                 sheet.campoClass.setEditable(false);
+                 
+                 player.setGold();
+                 sheet.campoGold.setText(player.getGold());
+                 sheet.campoGold.setEditable(false);
+
+                 player.setSTR();
+                 sheet.campoSTR.setText(player.getSTR());
+                 sheet.campoSTR.setEditable(false);
+                 
+                 player.setWIS();
+                 sheet.campoWIS.setText(player.getWIS());
+                 sheet.campoWIS.setEditable(false);
+                 
+                 player.setVIG();
+                 sheet.campoVIG.setText(player.getVIG());
+                 sheet.campoVIG.setEditable(false);
+                 
+                 player.setWIL();
+                 sheet.campoWIL.setText(player.getWIL());
+                 sheet.campoWIL.setEditable(false);
+                 
+                 player.setCON();
+                 sheet.campoCON.setText(player.getCON());
+                 sheet.campoCON.setEditable(false);
+                 
+                 player.setINT();
+                 sheet.campoINT.setText(player.getINT());
+                 sheet.campoINT.setEditable(false);
+                 
+                 player.setDEX();
+                 sheet.campoDEX.setText(player.getDEX());
+                 sheet.campoDEX.setEditable(false);
+                 
+                 player.setQuantInv();
+                 player.setInv();player.setInvQuant();
+                 sheet.areaInv.setLayout(new GridLayout (player.getQuantInv(), 2));
+                 JTextField [] inv = new JTextField [player.getQuantInv()];
+                 JTextField [] quant = new JTextField [player.getQuantInv()];
+                 for (int i = 0 ; i < player.getQuantInv() ; i++) {
+                     inv[i] = new JTextField (player.getInv(i));
+                     inv[i].setEditable(false);
+                     inv[i].setBackground(java.awt.Color.LIGHT_GRAY);
+                     sheet.areaInv.add(inv[i]);
+                     
+                     quant[i] = new JTextField (player.getInvQuant(i));
+                     quant[i].setEditable(false);
+                     quant[i].setBackground(java.awt.Color.LIGHT_GRAY);
+                     sheet.areaInv.add(quant[i]);
+                 }
+                 
+                 player.setQuant();
+                 player.setSkill();player.setSkillCost();
+                 sheet.areaSkill.setLayout(new GridLayout (player.getQuant(), 2));
+                 JTextField [] skill = new JTextField [player.getQuant()];
+                 JTextField [] cost = new JTextField [player.getQuant()];
+                 for (int i = 0 ; i < player.getQuant() ; i++) {
+                     skill[i] = new JTextField (player.getSkill(i));
+                     skill[i].setEditable(false);
+                     skill[i].setBackground(java.awt.Color.LIGHT_GRAY);
+                     sheet.areaSkill.add(skill[i]);
+                     
+                     cost[i] = new JTextField (player.getSkillCost(i));
+                     cost[i].setEditable(false);
+                     cost[i].setBackground(java.awt.Color.LIGHT_GRAY);
+                     sheet.areaSkill.add(cost[i]);
+                 }
                  
                  sheet.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                  sheet.setLocation(470, 30);

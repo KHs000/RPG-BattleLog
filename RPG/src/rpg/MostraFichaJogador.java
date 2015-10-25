@@ -5,9 +5,14 @@
  */
 package rpg;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFrame;
+
 /**
  *
- * @author Aluno
+ * @author Felipe Rabelo
  */
 public class MostraFichaJogador extends javax.swing.JFrame {
 
@@ -146,6 +151,11 @@ public class MostraFichaJogador extends javax.swing.JFrame {
         jScrollPane3.setViewportView(areaSkill);
 
         jButton1.setText("Voltar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -278,6 +288,10 @@ public class MostraFichaJogador extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if (evt.getSource() == jButton1) {dispose();}
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
