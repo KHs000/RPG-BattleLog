@@ -44,24 +44,27 @@ public class JanelaDeletarMob extends JFrame{
             mob = new JButton [pastaMob.listFiles().length];
             fichaMob = new File[pastaMob.listFiles().length];
             fichaMob = pastaMob.listFiles();int index = 0;
-            MobReader ficha = new MobReader();
+            MobRead ficha = new MobRead();
             nomeMob = ficha.getNomeMob();
             for (int i = 0 ; i < mob.length ; i++) {
                 mob[i] = new JButton(nomeMob[index]);
                 mob[i].setName(nomeMob[index]);
                 areaConteudo.add(mob[i]);
-                ActionListener event = (ActionEvent e1) -> {
-                    String name1 = new Button().getName((JButton) e1.getSource());
-                    
-                    MobReader mob1 = new MobReader(name1);
-                    mob1.Deleta();
-                    encerrar();
-                    
-                    JanelaConfiguraMob open = new JanelaConfiguraMob ();
-                    open.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                    open.setSize(400, 400);
-                    open.setLocation(450, 30);
-                    open.setVisible(true);
+                ActionListener event = new ActionListener() {
+
+                    public void actionPerformed(ActionEvent e1) {
+                        String name1 = new Button().getName((JButton) e1.getSource());
+                        
+                        MobRead mob1 = new MobRead(name1);
+                        mob1.Deleta();
+                        encerrar();
+                        
+                        JanelaConfiguraMob open = new JanelaConfiguraMob ();
+                        open.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                        open.setSize(400, 400);
+                        open.setLocation(450, 30);
+                        open.setVisible(true);
+                    }
                 };
                 mob[i].addActionListener(event);
                 index++;
@@ -71,7 +74,7 @@ public class JanelaDeletarMob extends JFrame{
         voltar.addActionListener(e);
     }
     
-    public void encerrar () {
+    public final void encerrar () {
         this.dispose();
     }
     

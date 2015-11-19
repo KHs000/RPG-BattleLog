@@ -57,7 +57,7 @@ public class JanelaAlteraFichaMob extends JFrame{
         
         Event onclick = new Event();
         
-        MobReader mob = new MobReader (name);
+        MobRead mob = new MobRead (name);
         GridBagConstraints c = new GridBagConstraints ();
         c.insets = new Insets (2, 2, 2, 2);
         

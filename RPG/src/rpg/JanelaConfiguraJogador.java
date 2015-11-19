@@ -48,7 +48,7 @@ public class JanelaConfiguraJogador extends JFrame{
              
              JanelaConfiguracao open = new JanelaConfiguracao();
              open.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-             open.setSize(250, 250);
+             open.setSize(250, 500);
              open.setLocation(500, 30);
              open.setVisible(true);
          }

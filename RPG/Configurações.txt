@@ -1,1 +1,4 @@
 Skyrim-Jogadores:C:\Users\Felipe Rabelo\Documents\RPGs\RPG - Skyrim\Jogadores\
+Skyrim-NPCs:C:\Users\Felipe Rabelo\Documents\RPGs\RPG - Skyrim\NPCs\
+Skyrim-Mobs:C:\Users\Felipe Rabelo\Documents\RPGs\RPG - Skyrim\Mobs\
+Skyrim-Itens:C:\Users\Felipe Rabelo\Documents\RPGs\RPG - Skyrim\Itens\

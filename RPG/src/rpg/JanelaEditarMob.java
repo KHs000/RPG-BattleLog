@@ -1,5 +1,3 @@
-
-
 package rpg;
 
 import java.awt.BorderLayout;
@@ -44,22 +42,19 @@ public class JanelaEditarMob extends JFrame{
             mob = new JButton [pastaMob.listFiles().length];
             fichaMob = new File[pastaMob.listFiles().length];
             fichaMob = pastaMob.listFiles();int index = 0;
-            MobReader ficha = new MobReader();
+            MobRead ficha = new MobRead();
             nomeMob = ficha.getNomeMob();
             for (int i = 0 ; i < mob.length ; i++) {
                 mob[i] = new JButton(nomeMob[index]);
                 mob[i].setName(nomeMob[index]);
                 areaConteudo.add(mob[i]);
-                ActionListener event = new ActionListener () {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        String name = new Button().getName((JButton)e.getSource());
-                        JanelaAlteraFichaMob obj = new JanelaAlteraFichaMob(name);
-                        obj.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                        obj.setLocation(500, 30);
-                        obj.setSize(400, 400);
-                        obj.setVisible(true);
-                    }
+                ActionListener event = (ActionEvent e1) -> {
+                    String name1 = new Button().getName((JButton) e1.getSource());
+                    JanelaAlteraFichaMob obj = new JanelaAlteraFichaMob(name1);
+                    obj.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    obj.setLocation(500, 30);
+                    obj.setSize(400, 400);
+                    obj.setVisible(true);
                 };
                 mob[i].addActionListener(event);
                 index++;
@@ -89,8 +84,6 @@ public class JanelaEditarMob extends JFrame{
     }
     
     private class Button {
-        public String getName (JButton b) {
-            return b.getName();
-        }
+        public String getName (JButton b) {return b.getName();}
     }
 }

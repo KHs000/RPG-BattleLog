@@ -72,7 +72,7 @@ public class Janela extends JFrame {
              
              JanelaConfiguracao config = new JanelaConfiguracao ();
              config.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-             config.setSize(250, 250);
+             config.setSize(250, 500);
              config.setLocation(500, 3);
              config.setVisible(true);
          }

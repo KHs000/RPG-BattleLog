@@ -11,12 +11,12 @@ import javax.swing.JFrame;
 
 public class JanelaConfiguracao extends JFrame {
     private JButton Opcao [];
-    private String OpcaoTexto [] = {"Jogadores", "Mobs", "NPCs", "Voltar"};
+    private String OpcaoTexto [] = {"Jogadores", "Mobs", "NPCs", "Itens", "Skills", "Voltar"};
 
     public JanelaConfiguracao() {
         super ("Configurações");
         
-        setLayout (new GridLayout (4, 1));
+        setLayout (new GridLayout (6, 1));
         setVisible (true);
         Opcao = new JButton [OpcaoTexto.length];
         for (int i = 0 ; i < Opcao.length ; i++) {
@@ -30,14 +30,12 @@ public class JanelaConfiguracao extends JFrame {
         }
     }
     
-    public void encerar () {
-        this.dispose();
-    }
+    public void encerar () {this.dispose();}
     
     private class Event implements ActionListener {
       @Override
       public void actionPerformed( ActionEvent event ){
-         if (event.getSource() == Opcao[3]) {
+         if (event.getSource() == Opcao[5]) {
              encerar();
              
              Janela open = new Janela();
@@ -67,11 +65,23 @@ public class JanelaConfiguracao extends JFrame {
          if (event.getSource() == Opcao[2]) {
              encerar();
              
-             JanelaTemporaria open = new JanelaTemporaria ();
+             JanelaConfiguraNPC open = new JanelaConfiguraNPC ();
              open.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-             open.setSize(250, 250);
+             open.setSize(400, 400);
+             open.setLocation(450, 30);
+             open.setVisible(true);
+         }
+         if (event.getSource() == Opcao[3]) {
+             encerar();
+             
+             JanelaConfiguraItens open = new JanelaConfiguraItens ();
+             open.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
              open.setLocation(500, 30);
              open.setVisible(true);
+         }
+         if (event.getSource() == Opcao[4]) {
+             encerar();
+             
          }
       }
     }
