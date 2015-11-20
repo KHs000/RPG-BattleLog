@@ -50,21 +50,11 @@ public class JanelaDeletarMob extends JFrame{
                 mob[i] = new JButton(nomeMob[index]);
                 mob[i].setName(nomeMob[index]);
                 areaConteudo.add(mob[i]);
-                ActionListener event = new ActionListener() {
-
-                    public void actionPerformed(ActionEvent e1) {
-                        String name1 = new Button().getName((JButton) e1.getSource());
-                        
-                        MobRead mob1 = new MobRead(name1);
-                        mob1.Deleta();
-                        encerrar();
-                        
-                        JanelaConfiguraMob open = new JanelaConfiguraMob ();
-                        open.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                        open.setSize(400, 400);
-                        open.setLocation(450, 30);
-                        open.setVisible(true);
-                    }
+                ActionListener event = (ActionEvent e1) -> {
+                    String name1 = new Button().getName((JButton) e1.getSource());
+                    
+                    MobRead mob1 = new MobRead(name1);
+                    mob1.Deleta();
                 };
                 mob[i].addActionListener(event);
                 index++;

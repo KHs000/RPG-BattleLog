@@ -321,8 +321,5 @@ public class NPCRead {
         return cont;
     }
     
-    public void Deleta () {
-        if (npcFicha.delete()) {JOptionPane.showMessageDialog(null, "Arquivo deletado.");} //PQ VC É TÃO ALEATÓRIO?????
-        else {JOptionPane.showMessageDialog(null, "Arquivo não deletado.");}
-    }
+    public void Deleta () {npcFicha.deleteOnExit();}
 }

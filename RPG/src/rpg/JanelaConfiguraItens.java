@@ -340,7 +340,7 @@ public class JanelaConfiguraItens extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jTextField17)
-                                            .addComponent(jTextField16, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)))
+                                            .addComponent(jTextField16, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)))
                                     .addComponent(jTextField9, javax.swing.GroupLayout.Alignment.LEADING))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -699,10 +699,10 @@ public class JanelaConfiguraItens extends javax.swing.JFrame {
         if (evt.getSource() == jButton2) {
             this.dispose();
             
-            JanelaConfiguracao config = new JanelaConfiguracao ();
+            JanelaConfiguraIten config = new JanelaConfiguraIten ();
             config.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            config.setSize(250, 500);
-            config.setLocation(500, 3);
+            config.setSize(400, 400);
+            config.setLocation(450, 30);
             config.setVisible(true);
         }
     }//GEN-LAST:event_jButton2ActionPerformed

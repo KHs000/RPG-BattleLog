@@ -74,9 +74,10 @@ public class JanelaConfiguracao extends JFrame {
          if (event.getSource() == Opcao[3]) {
              encerar();
              
-             JanelaConfiguraItens open = new JanelaConfiguraItens ();
+             JanelaConfiguraIten open = new JanelaConfiguraIten ();
              open.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-             open.setLocation(500, 30);
+             open.setSize(400, 400);
+             open.setLocation(450, 30);
              open.setVisible(true);
          }
          if (event.getSource() == Opcao[4]) {

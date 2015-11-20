@@ -17,16 +17,16 @@ import javax.swing.JScrollPane;
  *
  * @author Felipe Rabelo
  */
-public class JanelaDeletarNPC extends JFrame{
-    private final File pastaNPC;
-    private File [] fichaNPC;
-    private final JButton voltar;
-    private JButton [] npc;
-    private final JPanel areaConteudo;
-    private String [] nomeNPC;
+public class JanelaDeletarIten extends JFrame{
+    private File pastaIten;
+    private File [] iten;
+    private JButton voltar;
+    private JButton [] itenButton;
+    private JPanel areaConteudo;
+    private String [] nomeIten;
     
-    public JanelaDeletarNPC () throws IOException {
-        super ("Excluir NPC");
+    public JanelaDeletarIten () throws IOException {
+        super ("Editar Item");
         
         setLayout(new BorderLayout());
         setVisible(true);
@@ -39,24 +39,24 @@ public class JanelaDeletarNPC extends JFrame{
         
         Event e = new Event ();
         
-        pastaNPC = new File ("C:\\Users\\Felipe Rabelo\\Documents\\RPGs\\RPG - Skyrim\\NPCs");
-        if (pastaNPC.listFiles().length > 0) {
-            npc = new JButton [pastaNPC.listFiles().length];
-            fichaNPC = new File[pastaNPC.listFiles().length];
-            fichaNPC = pastaNPC.listFiles();int index = 0;
-            NPCRead ficha = new NPCRead();
-            nomeNPC = ficha.getNomeMob();
-            for (int i = 0 ; i < npc.length ; i++) {
-                npc[i] = new JButton(nomeNPC[index]);
-                npc[i].setName(nomeNPC[index]);
-                areaConteudo.add(npc[i]);
+        pastaIten = new File ("C:\\Users\\Felipe Rabelo\\Documents\\RPGs\\RPG - Skyrim\\Itens");
+        if (pastaIten.listFiles().length > 0) {
+            itenButton = new JButton [pastaIten.listFiles().length];
+            iten = new File[pastaIten.listFiles().length];
+            iten = pastaIten.listFiles();int index = 0;
+            ItenRead ficha = new ItenRead();
+            nomeIten = ficha.getNomeIten();
+            for (int i = 0 ; i < itenButton.length ; i++) {
+                itenButton[i] = new JButton(nomeIten[index]);
+                itenButton[i].setName(nomeIten[index]);
+                areaConteudo.add(itenButton[i]);
                 ActionListener event = (ActionEvent e1) -> {
                     String name1 = new Button().getName((JButton) e1.getSource());
                     
-                    NPCRead npc1 = new NPCRead(name1);
-                    npc1.Deleta();
+                    ItenRead iten1 = new ItenRead (name1);
+                    iten1.Deleta();
                 };
-                npc[i].addActionListener(event);
+                itenButton[i].addActionListener(event);
                 index++;
             }
         } 
@@ -74,7 +74,7 @@ public class JanelaDeletarNPC extends JFrame{
             if (e.getSource() == voltar) {
                 encerrar();
                 
-                JanelaConfiguraNPC open = new JanelaConfiguraNPC ();
+                JanelaConfiguraIten open = new JanelaConfiguraIten ();
                 open.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 open.setSize(400, 400);
                 open.setLocation(450, 30);
@@ -84,8 +84,6 @@ public class JanelaDeletarNPC extends JFrame{
     }
     
     private class Button {
-        public String getName (JButton b) {
-            return b.getName();
-        }
+        public String getName (JButton b) {return b.getName();}
     }
 }

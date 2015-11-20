@@ -30,9 +30,11 @@ public class Iten {
     private int arm;
     private int [] type = new int [4];
     private int [] resistence = new int [6];
-    private String [] resistenceLabel = {"Fire", "Water", "Earth", "Wind", "Light", "Black"};
+    private String [] resistenceLabel = {"Resistence Fire", "Resistence Water", "Resistence Earth", 
+        "Resistence Wind", "Resistence Light", "Resistence Black"};
     private int [] element = new int [7];
-    private String [] elementLabel = {"Neutral", "Fire", "Water", "Earth", "Wind", "Light", "Black"};
+    private String [] elementLabel = {"Element Neutral", "Element Fire", "Element Water", 
+        "Element Earth", "Element Wind", "Element Light", "Element Black"};
     private String Skill;
     private String local;
     private final JFileChooser path = new JFileChooser();
